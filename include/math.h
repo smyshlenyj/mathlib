@@ -4,11 +4,25 @@
 namespace mathlib
 {
 
-int add(int, int);
-int subtract(int, int);
-int multiply(int, int);
-int divide(int, int);
-int power(int, int);
-std::uint64_t factorial(int);
+enum class MathError 
+{
+    None,
+    DivisionByZero,
+    NegativeFactorial,
+    InvalidArgument
+};
+
+struct MathResult 
+{
+    std::int64_t value;
+    MathError error;
+};    
+
+MathResult add(int, int);
+MathResult subtract(int, int);
+MathResult multiply(int, int);
+MathResult divide(int, int);
+MathResult power(int, int);
+MathResult factorial(int);
 
 }  // namespace mathlib

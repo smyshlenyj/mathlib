@@ -3,39 +3,58 @@
 namespace mathlib
 {
 
-int add(int x, int y)
+MathResult add(int x, int y)
 {
-    return x + y;
+    return {x + y, MathError::None};
 }
 
-int subtract(int x, int y)
+MathResult subtract(int x, int y)
 {
-    return x - y;
+    return {x - y, MathError::None};
 }
 
-int multiply(int x, int y)
+MathResult multiply(int x, int y)
 {
-    return x * y;
+    return {x * y, MathError::None};
 }
 
-int divide(int x, int y)
+MathResult divide(int x, int y)
 {
-    return x / y;
+    if (y == 0)
+        return {0, MathError::DivisionByZero};
+
+    return {x / y, MathError::None};
 }
 
-int power(int base, int exp)
+MathResult power(int base, int exp)
 {
-    int result = 1.0;
-    for (int i = 0; i < exp; ++i)
+    if (exp < 0)
+        return {0, MathError::InvalidArgument};
+
+    std::int64_t result = 1;
+
+    for (std::int64_t i = 0; i < exp; ++i)
     {
         result *= base;
     }
-    return result;
+
+    return {result, MathError::None};
 }
 
-std::uint64_t factorial(int n)
+MathResult factorial(int n)
 {
-    if (n <= 1) return 1;
-    return n * factorial(n - 1);
+    if (n < 0)
+        return {0, MathError::NegativeFactorial};
+
+    if (n == 0 || n == 1)
+        return {1, MathError::None};
+
+    MathResult prev = factorial(n - 1);
+
+    if (prev.error != MathError::None)
+        return prev;
+
+    return {n * prev.value, MathError::None};
 }
+
 }  // namespace mathlib
