@@ -3,37 +3,41 @@
 namespace mathlib
 {
 
-MathResult add(int x, int y)
+MathResult add(std::int64_t first, std::int64_t second)
 {
-    return {x + y, MathError::None};
+    return {first + second, MathError::None};
 }
 
-MathResult subtract(int x, int y)
+MathResult subtract(std::int64_t first, std::int64_t second)
 {
-    return {x - y, MathError::None};
+    return {first - second, MathError::None};
 }
 
-MathResult multiply(int x, int y)
+MathResult multiply(std::int64_t first, std::int64_t second)
 {
-    return {x * y, MathError::None};
+    return {first * second, MathError::None};
 }
 
-MathResult divide(int x, int y)
+MathResult divide(std::int64_t first, std::int64_t second)
 {
-    if (y == 0)
+    if (second == 0)
+    {
         return {0, MathError::DivisionByZero};
+    }
 
-    return {x / y, MathError::None};
+    return {first / second, MathError::None};
 }
 
-MathResult power(int base, int exp)
+MathResult power(std::int64_t base, std::int64_t exponent)
 {
-    if (exp < 0)
+    if (exponent < 0)
+    {
         return {0, MathError::InvalidArgument};
+    }
 
     std::int64_t result = 1;
 
-    for (std::int64_t i = 0; i < exp; ++i)
+    for (std::int64_t i = 0; i < exponent; ++i)
     {
         result *= base;
     }
@@ -41,18 +45,24 @@ MathResult power(int base, int exp)
     return {result, MathError::None};
 }
 
-MathResult factorial(int n)
+MathResult factorial(std::int64_t n)
 {
     if (n < 0)
+    {
         return {0, MathError::NegativeFactorial};
+    }
 
     if (n == 0 || n == 1)
+    {
         return {1, MathError::None};
+    }
 
     MathResult prev = factorial(n - 1);
 
     if (prev.error != MathError::None)
+    {
         return prev;
+    }
 
     return {n * prev.value, MathError::None};
 }

@@ -4,7 +4,7 @@
 namespace mathlib
 {
 
-enum class MathError 
+enum class MathError : std::uint8_t
 {
     None,
     DivisionByZero,
@@ -12,17 +12,17 @@ enum class MathError
     InvalidArgument
 };
 
-struct MathResult 
+struct MathResult
 {
     std::int64_t value;
     MathError error;
-};    
+};
 
-MathResult add(int, int);
-MathResult subtract(int, int);
-MathResult multiply(int, int);
-MathResult divide(int, int);
-MathResult power(int, int);
-MathResult factorial(int);
+MathResult add(std::int64_t first, std::int64_t second);
+MathResult subtract(std::int64_t first, std::int64_t second);
+MathResult multiply(std::int64_t first, std::int64_t second);
+MathResult divide(std::int64_t first, std::int64_t second);
+MathResult power(std::int64_t base, std::int64_t exponent);
+MathResult factorial(std::int64_t n);
 
 }  // namespace mathlib
