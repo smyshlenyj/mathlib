@@ -1,5 +1,5 @@
 #pragma once
-#include <cstdint>  // для std::uint64_t
+#include <cstdint>  // std::uint64_t
 
 namespace mathlib
 {
