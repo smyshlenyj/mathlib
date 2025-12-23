@@ -10,7 +10,7 @@ This document explains how to integrate it into your CMake project.
 ```
 mathlib/
 ├─ include/       # Public header files
-│   └─ math.h     # Contains functions inside namespace mathlib
+│   └─ mathlib.h     # Contains functions inside namespace mathlib
 ├─ math.cpp       # Library source file
 ├─ CMakeLists.txt
 ```
@@ -68,7 +68,7 @@ target_link_libraries(myapp PRIVATE math)
 Now you can include the headers in your source files and use the namespace:
 
 ```cpp
-#include "math.h"
+#include "mathlib.h"
 
 int main() {
     int sum = mathlib::add(3, 4);
