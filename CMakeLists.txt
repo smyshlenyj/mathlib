@@ -21,8 +21,10 @@ add_compile_options(-Wall -Wextra -Wpedantic)
 
 # clang-tidy setup
 option(ENABLE_CLANG_TIDY "Enable clang-tidy checks" ON)
+
 if(ENABLE_CLANG_TIDY)
     find_program(CLANG_TIDY NAMES clang-tidy clang-tidy-18 clang-tidy-17)
+
     if(CLANG_TIDY)
         message(STATUS "clang-tidy found: ${CLANG_TIDY}")
         set(CMAKE_CXX_CLANG_TIDY "${CLANG_TIDY}")
@@ -30,7 +32,7 @@ if(ENABLE_CLANG_TIDY)
 endif()
 
 # Library
-add_library(math STATIC src/math.cpp)
+add_library(math STATIC src/mathlib.cpp)
 target_include_directories(math PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
