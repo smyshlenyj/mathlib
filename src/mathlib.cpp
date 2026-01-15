@@ -28,18 +28,21 @@ MathResult divide(std::int64_t first, std::int64_t second)
     return {first / second, MathError::None};
 }
 
-MathResult power(std::int64_t base, std::int64_t exponent)
+// --------------------
+// Safe power function
+// --------------------
+MathResult power(Base base, Exponent exponent)
 {
-    if (exponent < 0)
+    if (exponent.value < 0)
     {
         return {0, MathError::InvalidArgument};
     }
 
     std::int64_t result = 1;
 
-    for (std::int64_t i = 0; i < exponent; ++i)
+    for (std::int64_t i = 0; i < exponent.value; ++i)
     {
-        result *= base;
+        result *= base.value;
     }
 
     return {result, MathError::None};
