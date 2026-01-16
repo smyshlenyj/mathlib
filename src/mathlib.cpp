@@ -3,39 +3,39 @@
 namespace mathlib
 {
 
-MathResult add(std::int64_t first, std::int64_t second)
+std::int64_t add(std::int64_t first, std::int64_t second)
 {
-    return {first + second, MathError::None};
+    return first + second;
 }
 
-MathResult subtract(std::int64_t first, std::int64_t second)
+std::int64_t subtract(std::int64_t first, std::int64_t second)
 {
-    return {first - second, MathError::None};
+    return first - second;
 }
 
-MathResult multiply(std::int64_t first, std::int64_t second)
+std::int64_t multiply(std::int64_t first, std::int64_t second)
 {
-    return {first * second, MathError::None};
+    return first * second;
 }
 
-MathResult divide(std::int64_t first, std::int64_t second)
+std::int64_t divide(std::int64_t first, std::int64_t second)
 {
     if (second == 0)
     {
-        return {0, MathError::DivisionByZero};
+        return 0;  /// ?????
     }
 
-    return {first / second, MathError::None};
+    return first / second;
 }
 
 // --------------------
 // Safe power function
 // --------------------
-MathResult power(Base base, Exponent exponent)
+std::int64_t power(Base base, Exponent exponent)
 {
     if (exponent.value < 0)
     {
-        return {0, MathError::InvalidArgument};
+        return 0;  /////
     }
 
     std::int64_t result = 1;
@@ -45,29 +45,24 @@ MathResult power(Base base, Exponent exponent)
         result *= base.value;
     }
 
-    return {result, MathError::None};
+    return result;
 }
 
-MathResult factorial(std::int64_t n)
+std::int64_t factorial(std::int64_t n)
 {
     if (n < 0)
     {
-        return {0, MathError::NegativeFactorial};
+        return 0;  // ??????
     }
 
     if (n == 0 || n == 1)
     {
-        return {1, MathError::None};
+        return 1;
     }
 
-    MathResult prev = factorial(n - 1);
+    std::int64_t prev = factorial(n - 1);
 
-    if (prev.error != MathError::None)
-    {
-        return prev;
-    }
-
-    return {n * prev.value, MathError::None};
+    return n * prev;
 }
 
 }  // namespace mathlib
