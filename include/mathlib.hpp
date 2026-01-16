@@ -1,5 +1,6 @@
 #pragma once
 #include <cstdint>  // std::int64_t, std::uint8_t
+#include <stdexcept>
 
 namespace mathlib
 {
@@ -39,7 +40,7 @@ std::int64_t divide(std::int64_t first, std::int64_t second)
 {
     if (second == 0)
     {
-        return 0;  /// ?????
+        throw std::invalid_argument("Division by zero");
     }
 
     return first / second;
@@ -52,7 +53,7 @@ std::int64_t power(Base base, Exponent exponent)
 {
     if (exponent.value < 0)
     {
-        return 0;  /////
+        throw std::invalid_argument("Negative exponent");
     }
 
     std::int64_t result = 1;
@@ -69,7 +70,7 @@ std::int64_t factorial(std::int64_t n)
 {
     if (n < 0)
     {
-        return 0;  // ??????
+        throw std::invalid_argument("Negative factorial");
     }
 
     if (n == 0 || n == 1)

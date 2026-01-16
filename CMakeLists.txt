@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 project(mathlib VERSION 0.1.0 LANGUAGES CXX)
 
-include(GNUInstallDirs) # Provides CMAKE_INSTALL_*DIR variables for portable install paths
-
 # Set C++ standard
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -32,7 +30,7 @@ if(ENABLE_CLANG_TIDY)
 endif()
 
 # Library
-add_library(math INTERFACE src/mathlib.hpp)
+add_library(math INTERFACE include/mathlib.hpp)
 target_include_directories(math INTERFACE
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
