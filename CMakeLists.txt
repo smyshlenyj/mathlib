@@ -32,18 +32,7 @@ if(ENABLE_CLANG_TIDY)
 endif()
 
 # Library
-add_library(math STATIC src/mathlib.cpp)
-target_include_directories(math PUBLIC
+add_library(math INTERFACE src/mathlib.hpp)
+target_include_directories(math INTERFACE
     ${CMAKE_CURRENT_SOURCE_DIR}/include
-)
-
-# Install library
-install(TARGETS math
-    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-)
-
-# Install headers
-install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
-    FILES_MATCHING PATTERN "*.h"
 )

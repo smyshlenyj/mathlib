@@ -1,8 +1,25 @@
-#include "mathlib.h"
+#pragma once
+#include <cstdint>  // std::int64_t, std::uint8_t
 
 namespace mathlib
 {
 
+// --------------------
+// Strong typedefs for power
+// --------------------
+struct Base
+{
+    std::int64_t value;
+};
+
+struct Exponent
+{
+    std::int64_t value;
+};
+
+// --------------------
+// Math functions
+// --------------------
 std::int64_t add(std::int64_t first, std::int64_t second)
 {
     return first + second;
